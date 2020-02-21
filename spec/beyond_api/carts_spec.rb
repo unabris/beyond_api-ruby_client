@@ -1,7 +1,7 @@
 RSpec.describe BeyondApi::Carts do
   context "when authorized" do
     before(:all) do
-      @session = BeyondApi::Session.new(api_url: ENV['API_URL'])
+      @session = BeyondApi::Session.new(api_url: ENV["API_URL"])
       @session.token.client_credentials
     end
 
@@ -30,12 +30,15 @@ RSpec.describe BeyondApi::Carts do
     end
 
     describe "#find" do
+      it "returns a successful response"
     end
 
     describe "#payment_method" do
+      it "returns a successful response"
     end
 
     describe "#payment_methods" do
+      it "returns a successful response"
     end
 
     describe "#replace_line_item" do
@@ -63,15 +66,17 @@ RSpec.describe BeyondApi::Carts do
     end
 
     describe "#shipping_method" do
+      it "returns a successful response"
     end
 
     describe "#shipping_methods" do
+      it "returns a successful response"
     end
   end
 
   context "when unauthorized" do
     before(:all) do
-      @session = BeyondApi::Session.new(api_url: ENV['API_URL'])
+      @session = BeyondApi::Session.new(api_url: ENV["API_URL"])
     end
 
     describe "#add_line_item" do
@@ -99,12 +104,15 @@ RSpec.describe BeyondApi::Carts do
     end
 
     describe "#find" do
+      it "returns a successful response"
     end
 
     describe "#payment_method" do
+      it "returns a successful response"
     end
 
     describe "#payment_methods" do
+      it "returns a successful response"
     end
 
     describe "#replace_line_item" do
@@ -132,9 +140,11 @@ RSpec.describe BeyondApi::Carts do
     end
 
     describe "#shipping_method" do
+      it "returns a successful response"
     end
 
     describe "#shipping_methods" do
+      it "returns a successful response"
     end
   end
 end

@@ -1,7 +1,7 @@
 RSpec.describe BeyondApi::WebhookSubscriptions do
   context "when authorized" do
     before(:all) do
-      @session = BeyondApi::Session.new(api_url: ENV['API_URL'])
+      @session = BeyondApi::Session.new(api_url: ENV["API_URL"])
       @session.token.client_credentials
     end
 
@@ -9,6 +9,9 @@ RSpec.describe BeyondApi::WebhookSubscriptions do
     end
 
     describe "#all" do
+      it "returns a successful response" do
+        expect(@session.webhook_subscriptions.all).not_to be_instance_of(BeyondApi::Error)
+      end
     end
 
     describe "#create" do
@@ -29,13 +32,16 @@ RSpec.describe BeyondApi::WebhookSubscriptions do
 
   context "when unauthorized" do
     before(:all) do
-      @session = BeyondApi::Session.new(api_url: ENV['API_URL'])
+      @session = BeyondApi::Session.new(api_url: ENV["API_URL"])
     end
 
     describe "#activate" do
     end
 
     describe "#all" do
+      it "returns an unauthorized error" do
+        expect(@session.webhook_subscriptions.all.error_id).to eq("unauthorized")
+      end
     end
 
     describe "#create" do
