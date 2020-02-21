@@ -1,5 +1,10 @@
 RSpec.describe BeyondApi::Orders do
   context "when authorized" do
+    before(:all) do
+      @session = BeyondApi::Session.new(api_url: ENV['API_URL'])
+      @session.token.client_credentials
+    end
+
     describe "#active_payment_process" do
     end
 
@@ -101,6 +106,10 @@ RSpec.describe BeyondApi::Orders do
   end
 
   context "when unauthorized" do
+    before(:all) do
+      @session = BeyondApi::Session.new(api_url: ENV['API_URL'])
+    end
+
     describe "#active_payment_process" do
     end
 

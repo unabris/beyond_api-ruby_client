@@ -1,5 +1,10 @@
 RSpec.describe BeyondApi::Users do
   context "when authorized" do
+    before(:all) do
+      @session = BeyondApi::Session.new(api_url: ENV['API_URL'])
+      @session.token.client_credentials
+    end
+
     describe "#add_roles" do
     end
 
@@ -47,6 +52,10 @@ RSpec.describe BeyondApi::Users do
   end
 
   context "when unauthorized" do
+    before(:all) do
+      @session = BeyondApi::Session.new(api_url: ENV['API_URL'])
+    end
+
     describe "#add_roles" do
     end
 

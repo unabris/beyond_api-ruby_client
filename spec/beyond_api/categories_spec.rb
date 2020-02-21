@@ -1,5 +1,10 @@
 RSpec.describe BeyondApi::Categories do
   context "when authorized" do
+    before(:all) do
+      @session = BeyondApi::Session.new(api_url: ENV['API_URL'])
+      @session.token.client_credentials
+    end
+
     describe "#all" do
     end
 
@@ -20,6 +25,10 @@ RSpec.describe BeyondApi::Categories do
   end
 
   context "when unauthorized" do
+    before(:all) do
+      @session = BeyondApi::Session.new(api_url: ENV['API_URL'])
+    end
+
     describe "#all" do
     end
 
