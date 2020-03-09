@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe BeyondApi::WebhookSubscriptions do
   context "when authorized" do
     before(:all) do
@@ -24,6 +26,7 @@ RSpec.describe BeyondApi::WebhookSubscriptions do
     end
 
     describe "#find" do
+      it "returns a successful response"
     end
 
     describe "#update" do
@@ -54,6 +57,7 @@ RSpec.describe BeyondApi::WebhookSubscriptions do
     end
 
     describe "#find" do
+      it "returns a successful response"
     end
 
     describe "#update" do

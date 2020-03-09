@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe BeyondApi::Customers do
   context "when authorized" do
     before(:all) do
@@ -12,13 +14,28 @@ RSpec.describe BeyondApi::Customers do
     end
 
     describe "#create" do
+      it "returns a successful response" do
+        expect(@session.customers.create(fixture("customers/create.yml"))).not_to be_instance_of(BeyondApi::Error)
+      end
+
+      it "is invalid with an existing email" do
+        customer = @session.customers.create(fixture("customers/create.yml"))
+        expect(@session.customers.create(fixture("customers/create.yml").merge("email" => customer.email))).not_to be_instance_of(BeyondApi::Error)
+      end
     end
 
     describe "#delete" do
+      it "returns a successful response" do
+        customer = @session.customers.create(fixture("customers/create.yml"))
+        expect(@session.customers.delete(customer.id)).to be(true)
+      end
     end
 
     describe "#find" do
-      it "returns a successful response"
+      it "returns a successful response" do
+        customer = @session.customers.create(fixture("customers/create.yml"))
+        expect(@session.customers.find(customer.id).id).to eq(customer.id)
+      end
     end
 
     describe "#update" do

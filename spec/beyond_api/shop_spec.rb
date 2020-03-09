@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe BeyondApi::Shop do
   context "when authorized" do
     before(:all) do
@@ -12,6 +14,7 @@ RSpec.describe BeyondApi::Shop do
     end
 
     describe "#attribute" do
+      it "returns a successful response"
     end
 
     describe "#attributes" do
@@ -27,6 +30,9 @@ RSpec.describe BeyondApi::Shop do
     end
 
     describe "#current" do
+      it "returns a successful response" do
+        expect(@session.shop.current).not_to be_instance_of(BeyondApi::Error)
+      end
     end
 
     describe "#delete_attribute" do
@@ -36,21 +42,33 @@ RSpec.describe BeyondApi::Shop do
     end
 
     describe "#image" do
+      it "returns a successful response"
     end
 
     describe "#images" do
+      it "returns a successful response" do
+        expect(@session.shop.images).not_to be_instance_of(BeyondApi::Error)
+      end
     end
 
     describe "#legal_content" do
+      it "returns a successful response"
     end
 
     describe "#legal_contents" do
+      it "returns a successful response" do
+        expect(@session.shop.legal_contents).not_to be_instance_of(BeyondApi::Error)
+      end
     end
 
     describe "#legal_details" do
+      it "returns a successful response" do
+        expect(@session.shop.legal_details).not_to be_instance_of(BeyondApi::Error)
+      end
     end
 
     describe "#search_images_by_label" do
+      it "returns a successful response"
     end
 
     describe "#update" do

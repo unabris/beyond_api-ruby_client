@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe BeyondApi::Signers do
   context "when authorized" do
     before(:all) do

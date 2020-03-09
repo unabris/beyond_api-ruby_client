@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe BeyondApi::NewsletterTarget do
   context "when authorized" do
     before(:all) do

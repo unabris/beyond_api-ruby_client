@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe BeyondApi::Users do
   context "when authorized" do
     before(:all) do
@@ -30,12 +32,15 @@ RSpec.describe BeyondApi::Users do
     end
 
     describe "#find" do
+      it "returns a successful response"
     end
 
     describe "#roles" do
+      it "returns a successful response"
     end
 
     describe "#search_by_username" do
+      it "returns a successful response"
     end
 
     describe "#send_email_address_change" do
@@ -48,6 +53,9 @@ RSpec.describe BeyondApi::Users do
     end
 
     describe "#support_access" do
+      it "returns a successful response" do
+        expect(@session.users.all).not_to be_instance_of(BeyondApi::Error)
+      end
     end
 
     describe "#verify_password" do
@@ -84,12 +92,15 @@ RSpec.describe BeyondApi::Users do
     end
 
     describe "#find" do
+      it "returns a successful response"
     end
 
     describe "#roles" do
+      it "returns a successful response"
     end
 
     describe "#search_by_username" do
+      it "returns a successful response"
     end
 
     describe "#send_email_address_change" do
@@ -102,6 +113,9 @@ RSpec.describe BeyondApi::Users do
     end
 
     describe "#support_access" do
+      it "returns an unauthorized error" do
+        expect(@session.users.all.error_id).to eq("unauthorized")
+      end
     end
 
     describe "#verify_password" do

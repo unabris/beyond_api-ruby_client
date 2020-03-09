@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe BeyondApi::ShippingZones do
   context "when authorized" do
     before(:all) do
@@ -14,31 +16,37 @@ RSpec.describe BeyondApi::ShippingZones do
     describe "#create" do
     end
 
-    describe "#create" do
+    describe "#create_shipping_method" do
     end
 
     describe "#delete" do
     end
 
-    describe "#delete" do
+    describe "#delete_shipping_method" do
     end
 
     describe "#find" do
+      it "returns a successful response"
     end
 
-    describe "#find" do
+    describe "#find_serviceable_countries" do
+      it "returns an unauthorized error" do
+        expect(@session.shipping_zones.find_serviceable_countries).not_to be_instance_of(BeyondApi::Error)
+      end
     end
 
-    describe "#shipping" do
+    describe "#shipping_method" do
+      it "returns a successful response"
     end
 
-    describe "#shipping" do
+    describe "#shipping_methods" do
+      it "returns a successful response"
     end
 
     describe "#sort" do
     end
 
-    describe "#sort" do
+    describe "#sort_shipping_methods" do
     end
 
     describe "#update" do
@@ -59,31 +67,37 @@ RSpec.describe BeyondApi::ShippingZones do
     describe "#create" do
     end
 
-    describe "#create" do
+    describe "#create_shipping_method" do
     end
 
     describe "#delete" do
     end
 
-    describe "#delete" do
+    describe "#delete_shipping_method" do
     end
 
     describe "#find" do
+      it "returns a successful response"
     end
 
-    describe "#find" do
+    describe "#find_serviceable_countries" do
+      it "returns an unauthorized error" do
+        expect(@session.shipping_zones.find_serviceable_countries).not_to be_instance_of(BeyondApi::Error)
+      end
     end
 
-    describe "#shipping" do
+    describe "#shipping_method" do
+      it "returns a successful response"
     end
 
-    describe "#shipping" do
+    describe "#shipping_methods" do
+      it "returns a successful response"
     end
 
     describe "#sort" do
     end
 
-    describe "#sort" do
+    describe "#sort_shipping_methods" do
     end
 
     describe "#update" do
