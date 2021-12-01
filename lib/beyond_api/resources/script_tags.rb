@@ -12,6 +12,7 @@ module BeyondApi
     #   $ curl 'https://api-shop.beyondshop.cloud/api/script-tags' -i -X GET \
     #       -H 'Authorization: Bearer <Access token>'
     #
+    # @option params [Boolean] :paginated
     # @option params [Integer] :size the page size
     # @option params [Integer] :page the page number
     #
@@ -21,9 +22,9 @@ module BeyondApi
     #   @script_tags = session.script_tags.all(size: 20, page: 0)
     #
     def all(params = {})
-      response, status = BeyondApi::Request.get(@session, "/script-tags", params)
+      path = "/script-tags"
 
-      handle_response(response, status)
+      handle_all_request(path, :script_tags, params)
     end
 
     #
@@ -40,7 +41,10 @@ module BeyondApi
     #   @script_tag = session.script_tags.find("df170ab1-13ae-4955-8b51-2478246acf59")
     #
     def find(script_tag_id)
-      response, status = BeyondApi::Request.get(@session, "/script-tags/#{script_tag_id}")
+      path = "/script-tags/#{script_tag_id}"
+
+      response, status = BeyondApi::Request.get(@session,
+                                                path)
 
       handle_response(response, status)
     end
@@ -66,7 +70,11 @@ module BeyondApi
     #   @script_tag = session.script_tags.create("https://example.org/js/fancy-script.js")
     #
     def create(script_tag_url)
-      response, status = BeyondApi::Request.post(@session, "/script-tags", { script_url: script_tag_url })
+      path = "/script-tags"
+
+      response, status = BeyondApi::Request.post(@session,
+                                                 path,
+                                                 { script_url: script_tag_url })
 
       handle_response(response, status)
     end
@@ -87,7 +95,10 @@ module BeyondApi
     #   session.script_tags.delete("4a9f7776-d74d-4311-8ddb-121bd5407520")
     #
     def delete(script_tag_id)
-      response, status = BeyondApi::Request.delete(@session, "/script-tags/#{script_tag_id}")
+      path = "/script-tags/#{script_tag_id}"
+
+      response, status = BeyondApi::Request.delete(@session,
+                                                   path)
 
       handle_response(response, status, respond_with_true: true)
     end
@@ -114,7 +125,11 @@ module BeyondApi
     #   @script_tag = session.script_tags.create("https://example.org/scripts/someOtherScript.js")
     #
     def update(script_tag_id, script_tag_url)
-      response, status = BeyondApi::Request.put(@session, "/script-tags/#{script_tag_id}", { script_url: script_tag_url })
+      path = "/script-tags/#{script_tag_id}"
+
+      response, status = BeyondApi::Request.put(@session,
+                                                path,
+                                                { script_url: script_tag_url })
 
       handle_response(response, status)
     end

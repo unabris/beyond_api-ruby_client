@@ -1,23 +1,20 @@
+# frozen_string_literal: true
+
 require "beyond_api/version"
 
-require "beyond_api/connection"
-require "beyond_api/request"
-require "beyond_api/session"
-require "beyond_api/error"
+require "logger"
 
 require "beyond_api/ext"
 require "beyond_api/utils"
 
-require "logger"
-
 module BeyondApi
-  def self.logger
-    @@logger ||= defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
-  end
+  autoload :Connection, "beyond_api/connection"
+  autoload :Error,      "beyond_api/error"
+  autoload :Logger,     "beyond_api/logger"
+  autoload :Request,    "beyond_api/request"
+  autoload :Session,    "beyond_api/session"
 
-  def self.logger=(logger)
-    @@logger = logger
-  end
+  extend BeyondApi::Logger
 
   class << self
     attr_accessor :configuration
@@ -30,8 +27,9 @@ module BeyondApi
   end
 
   class Configuration
-    attr_accessor :client_id, :client_secret, :open_timeout, :timeout,  :remove_response_links,
-                  :remove_response_key_underscores, :object_struct_responses, :raise_error_requests
+    attr_accessor :client_id, :client_secret, :open_timeout, :timeout, :remove_response_links,
+                  :remove_response_key_underscores, :object_struct_responses, :raise_error_requests,
+                  :log_headers, :log_bodies, :log_level, :all_pagination_size
 
     def initialize
       @client_id = nil
@@ -42,6 +40,12 @@ module BeyondApi
       @remove_response_key_underscores = false
       @object_struct_responses = false
       @raise_error_requests = false
+
+      @log_level = :info
+      @log_headers = false
+      @log_bodies = false
+
+      @all_pagination_size = 200
     end
   end
 end

@@ -14,9 +14,9 @@ module BeyondApi
     #
     # @beyond_api.scopes +prad:r+
     #
-    # @option param [Boolean] :paginated
-    # @option param [Integer] :size the page size
-    # @option param [Integer] :page the page number
+    # @option params [Boolean] :paginated
+    # @option params [Integer] :size the page size
+    # @option params [Integer] :page the page number
     #
     # @return [OpenStruct]
     #
@@ -24,18 +24,9 @@ module BeyondApi
     #   @product_attribute_definitions = session.product_attribute_definitions.all(size: 100, page: 0)
     #
     def all(params = {})
-      if params[:paginated] == false
-        result = all_paginated(page: 0, size: 1000)
+      path = "/product-attribute-definitions"
 
-        (1..result[:page][:total_pages] - 1).each do |page|
-          result[:embedded][:product_attribute_definition].concat(all_paginated(page: page, size: 1000)[:embedded][:product_attribute_definitions])
-        end
-
-        result.is_a?(Hash) ? result.delete(:page) : result.delete_field(:page)
-        result
-      else
-        all_paginated(params)
-      end
+      handle_all_request(path, :product_attribute_definitions, params)
     end
 
     #
@@ -67,7 +58,11 @@ module BeyondApi
     #   @product_attribute_definition = session.product_attribute_definitions.create(body)
     #
     def create(body)
-      response, status = BeyondApi::Request.post(@session, "/product-attribute-definitions", body)
+      path = "/product-attribute-definitions"
+
+      response, status = BeyondApi::Request.post(@session,
+                                                 path,
+                                                 body)
 
       handle_response(response, status)
     end
@@ -88,7 +83,10 @@ module BeyondApi
     #   session.product_attribute_definitions.delete("color")
     #
     def delete(product_attribute_name)
-      response, status = BeyondApi::Request.delete(@session, "/product-attribute-definitions/#{product_attribute_name}")
+      path = "/product-attribute-definitions/#{product_attribute_name}"
+
+      response, status = BeyondApi::Request.delete(@session,
+                                                   path)
 
       handle_response(response, status, respond_with_true: true)
     end
@@ -109,16 +107,12 @@ module BeyondApi
     #   @product_attribute_definition = session.product_attribute_definitions.find("filling_capacity")
     #
     def find(product_attribute_name)
-      response, status = BeyondApi::Request.get(@session, "/product-attribute-definitions/#{product_attribute_name}")
+      path = "/product-attribute-definitions/#{product_attribute_name}"
+
+      response, status = BeyondApi::Request.get(@session,
+                                                path)
 
       handle_response(response, status)
     end
-
-    private
-
-      def all_paginated(params = {})
-        response, status = BeyondApi::Request.get(@session, "/product-attribute-definitions", params)
-        handle_response(response, status)
-      end
   end
 end
